@@ -36,7 +36,13 @@ public  class AccountServiceImpl implements AccountService{
 
     @Override
     public SavingsAccount createSavingsAccount() {
-        return null;
+        SavingsAccount savingsAccount = new SavingsAccount();
+        savingsAccount.setAccountBalance(new BigDecimal(0.0));
+        savingsAccount.setAccountNumber(accountGen());
+
+        savingsAccountDao.save(savingsAccount);
+
+        return savingsAccountDao.findByAccountNumber(savingsAccount.getAccountNumber());
     }
 
     @Override
